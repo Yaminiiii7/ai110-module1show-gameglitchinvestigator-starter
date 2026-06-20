@@ -25,28 +25,49 @@ It wrote the code, ran away, and now the game is unplayable.
 
 ## 📝 Document Your Experience
 
-- [ ] Describe the game's purpose.
-- [ ] Detail which bugs you found.
-- [ ] Explain what fixes you applied.
+### Game's purpose
+A Streamlit number-guessing game called "Glitchy Guesser." The app picks a
+secret number within a range that depends on the chosen difficulty (Easy 1–20,
+Normal 1–50, Hard 1–100). The player types guesses, gets "Too High" / "Too Low"
+hints, has a limited number of attempts per difficulty, and earns a score.
+
+### Bugs found
+1. **New Game doesn't reset the display** — clicking "New Game 🔁" left the old
+   game on screen instead of starting fresh.
+2. **Hints were backwards** — guessing too high told you to go HIGHER and too
+   low told you to go LOWER (the Lower/Higher logic was reversed).
+
+
+### Fixes applied
+- **Hints (Bug 2):** Implemented `check_guess` in `logic_utils.py` so a guess
+  above the secret returns `"Too High"` with a "Go LOWER" message and a guess
+  below returns `"Too Low"` with a "Go HIGHER" message.
+
+- **Fix2 New game:** Updating with the right history
+
 
 ## 📸 Demo Walkthrough
 
 Describe your fixed game in numbered steps so a reader can follow along without watching a video:
 
-1. <!-- Describe this step -->
-2. <!-- Describe this step -->
-3. <!-- Describe this step -->
-4. <!-- Describe this step -->
-5. <!-- Add more steps as needed -->
+## Demo Walkthrough
+1. User enters a guess of 40
+2. Game returns "Too Low"
+3. User enters a guess of 70 → "Too High"
+4. Score updates correctly after each guess
+5. Game ends after the correct guess
+change the difficulty level as per your wish
 
-**Screenshot** *(optional)*: <!-- Insert a screenshot of your fixed, winning game here -->
 
 ## 🧪 Test Results
 
 ```
-# Paste your pytest output here, e.g.:
-# pytest tests/
-# ========================= X passed in 0.XXs =========================
+$ python -m pytest tests/test_game_logic.py
+tests/test_game_logic.py::test_winning_guess PASSED              [ 33%]
+tests/test_game_logic.py::test_guess_too_high PASSED             [ 66%]
+tests/test_game_logic.py::test_guess_too_low PASSED              [100%]
+
+========================== 3 passed in 0.05s ==========================
 ```
 
 ## 🚀 Stretch Features

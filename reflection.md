@@ -32,7 +32,7 @@ Document at least 3 bugs you found. Add rows as needed.
 - Give one example of an AI suggestion that was correct (including what the AI suggested and how you verified the result).
   fixing low and high. it was viceverse and AI suggested perfectly and I verified by running the live game.
 - Give one example of an AI suggestion that was incorrect or misleading (including what the AI suggested and how you verified the result).
-  attempts initilisation was given but it confused the purpose of fix
+  attempts initilization was given but it confused the purpose of fix
 
 ---
 
@@ -53,6 +53,9 @@ Document at least 3 bugs you found. Add rows as needed.
 ## 4. What did you learn about Streamlit and state?
 
 - How would you explain Streamlit "reruns" and session state to a friend who has never used Streamlit?
+  Streamlit is a Python tool that turns a plain Python script into a web app — you just write st.button(...), st.text_input(...), etc., and it builds the page for you.every time you click or type, Streamlit re-runs your whole script from the top, so normal variables get reset each time.
+
+  State (st.session_state) is the app's memory — a special box that keeps values (like your secret number, score, attempts) alive across those re-runs.
 
 ---
 
@@ -60,5 +63,8 @@ Document at least 3 bugs you found. Add rows as needed.
 
 - What is one habit or strategy from this project that you want to reuse in future labs or projects?
   - This could be a testing habit, a prompting strategy, or a way you used Git.
+  One habit I want to reuse is keeping a bug reproduction log before fixing anything — writing down the input, the expected behavior, and the actual behavior. Doing this forced me to confirm a bug was real and understand it clearly before I touched the code, instead of guessing. I also want to keep my habit of verifying every fix by running the live game, since that's how I caught that the Lower/Higher hints were backwards. And for pure logic like check_guess, I'll keep writing small pytest asserts so I can re-check the logic instantly without clicking through the app each time.
 - What is one thing you would do differently next time you work with AI on a coding task?
+  One thing I'd do differently is add my own # FIXME comments right where I spot a bug, before asking AI to fix it. In this project the starter code already had # FIXME: Logic breaks here markers, and they made it much easier to find the broken spots — so next time I want to leave my own markers as I investigate. This would help me give the AI a clearer, more specific prompt pointing to the exact line, instead of describing the bug vaguely. It would also keep me organized so I fix one tagged issue at a time and don't lose track of what's left.
 - In one or two sentences, describe how this project changed the way you think about AI generated code.
+  This project showed me that AI-generated code can look polished and "production-ready" while still hiding real bugs, like the backwards Lower/Higher hints and the broken New Game button. Now I treat AI output as a starting draft I have to test and verify myself, not something I can trust just because it runs.
